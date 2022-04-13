@@ -23,7 +23,22 @@ public class CarController {
     }
 
     @GetMapping("/api/car/{id}")
-    public Car getCarById(@PathVariable("id") int id) {
+    public Car getCarById(@PathVariable("id") int id) throws Exception{
         return carService.getCarById(id);
+    }
+
+    //Update
+    //Mozemo id da posaljemo u query parametru, a mozemo i u request body
+    //Sa put se ocekuje da se proslede sve nove vrednosti, to jest novi objekat
+    //Sa patch se menja jedan atribut
+    @PutMapping("/api/car/{id}")
+    public Car updateCarById(@PathVariable("id") int id, @RequestBody Car car) throws Exception{
+        return carService.updateCarById(id, car);
+    }
+
+
+    @DeleteMapping("/api/car/{id}")
+    public void deleteCarById(@PathVariable("id") int id) {
+        carService.deleteCarById(id);
     }
 }
